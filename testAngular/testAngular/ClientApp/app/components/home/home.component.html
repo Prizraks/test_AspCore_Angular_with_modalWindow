@@ -1,0 +1,155 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-8 col-lg-offset-4">
+            <h3>Список деталей</h3>
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Добавить деталь</button>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel" >Деталь</h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-horizontal" [formGroup]="formData" (ngSubmit)="submitData()">
+                    <div class="form-group">
+                        <label for="Name" class="col-sm-4 control-label">Название: </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"
+                                   name="DetailName" placeholder="Название детали"
+                                   formControlName="DetailName">
+                        </div>
+                        <div *ngIf="!formData.get('DetailName').valid && formData.get('DetailName').dirty"
+                             class="col-sm-8 col-sm-offset-4" style="color:red">
+                            Добавьте название!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="NomCode" class="col-sm-4 control-label">Номенк. номер: </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"
+                                   name="NomCode" placeholder="Номенклатурный номер"
+                                   formControlName="NomCode">
+                        </div>
+                        <div *ngIf="!formData.get('NomCode').valid && formData.get('NomCode').dirty"
+                             class="col-sm-8 col-sm-offset-4" style="color:red">
+                            Добавьте номенклатурный номер!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Count" class="col-sm-4 control-label">Количество: </label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control"
+                                   name="Count" placeholder="Количество"
+                                   formControlName="Count">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="DateCreate" class="col-sm-4 control-label">Дата создания: </label>
+                        <div class="col-sm-8">
+                            <input type="datetime-local" class="form-control"
+                                   name="DateCreate" placeholder="Дата создания"
+                                   formControlName="DateCreate">
+
+                        </div>
+
+                        <div *ngIf="!formData.get('DateCreate').valid && formData.get('DateCreate').dirty"
+                             class="col-sm-8 col-sm-offset-4" style="color:red">
+                            Добавьте дату!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Storekeeper" class="col-sm-4 control-label">Кладовщик: </label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="Storekeeper"
+                                    formControlName="Storekeeper">
+                                <option *ngFor="let data2 of KeeperList" value={{data2.id}}>
+                                    {{data2.keeperName}}
+                                </option>
+                            </select>
+
+                        </div>
+                        <div *ngIf="!formData.get('Storekeeper').valid && formData.get('Storekeeper').dirty"
+                             class="col-sm-8 col-sm-offset-4" style="color:red">
+                            Выберете кладовщика из списка!
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <button type="submit" [disabled]="!formData.valid" class="btn btn-success">Добавить</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Название
+                    </th>
+                    <th>
+                        Номенк. номер
+                    </th>
+                    <th>
+                        Количество
+                    </th>
+                    <th>
+                        Дата создания
+                    </th>
+                    <th>
+                        Дата удаления
+                    </th>
+                    <th>
+                        Кладовщик
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let detData of DetailList; let i = index; trackBy: Id">
+                    <td>
+                        {{detData.name}}
+                    </td>
+                    <td>
+                        {{detData.nomcode}}
+                    </td>
+                    <td>
+                        {{detData.count}}
+                    </td>
+                    <td>
+                        {{detData.datecreate}}
+                    </td>
+                    <td>
+                        {{detData.datedelete}}
+                    </td>
+                    <td>
+                        {{detData.keepername}}
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" (click)="deleteDetail(detData.id)">
+                            Удалить деталь
+                        </a>
+                        <a class="btn btn-danger" (click)="deleteRowOnDB(detData.id)">
+                            Удалить из БД
+                        </a>
+                    </td>
+                </tr>
+        </table>
+     </div>
+</div>

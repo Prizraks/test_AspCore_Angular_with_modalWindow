@@ -1,0 +1,11 @@
+E:\Проекты\testAngular\testAngular\bin\Debug\netcoreapp2.0\testAngular.deps.json
+E:\Проекты\testAngular\testAngular\bin\Debug\netcoreapp2.0\testAngular.runtimeconfig.json
+E:\Проекты\testAngular\testAngular\bin\Debug\netcoreapp2.0\testAngular.runtimeconfig.dev.json
+E:\Проекты\testAngular\testAngular\bin\Debug\netcoreapp2.0\testAngular.dll
+E:\Проекты\testAngular\testAngular\bin\Debug\netcoreapp2.0\testAngular.pdb
+E:\Проекты\testAngular\testAngular\obj\Debug\netcoreapp2.0\testAngular.csprojResolveAssemblyReference.cache
+E:\Проекты\testAngular\testAngular\obj\Debug\netcoreapp2.0\testAngular.csproj.CoreCompileInputs.cache
+E:\Проекты\testAngular\testAngular\obj\Debug\netcoreapp2.0\testAngular.AssemblyInfoInputs.cache
+E:\Проекты\testAngular\testAngular\obj\Debug\netcoreapp2.0\testAngular.AssemblyInfo.cs
+E:\Проекты\testAngular\testAngular\obj\Debug\netcoreapp2.0\testAngular.dll
+E:\Проекты\testAngular\testAngular\obj\Debug\netcoreapp2.0\testAngular.pdb
