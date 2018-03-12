@@ -11,6 +11,7 @@ export class HomeComponent {
     public DetailList = [];
     public KeeperList = [];
     public formData: FormGroup;
+    public mess = "";
     public constructor(private detService: DetailServcies) {
         this.detService.getDetailList()
             .subscribe(
@@ -32,7 +33,8 @@ export class HomeComponent {
         var status = confirm("Вы точно хотите удалить запись из БД?");
         if (status == true) {
             this.detService.removeDetailOnDB(detId)
-                .subscribe((data: Response) => (alert(data.json())));
+                .subscribe((data: Response) => (this.mess=data.json()));
+            alert(this.mess);
 
             //Get new list of details  
             this.detService.getDetailList()
@@ -46,7 +48,8 @@ export class HomeComponent {
         var status = confirm("Вы точно переместить деталь в удаленные?");
         if (status == true) {
             this.detService.removeDetail(detId)
-                .subscribe((data: Response) => (alert(data.json())));
+                .subscribe((data: Response) => (this.mess = data.json()));
+            alert(this.mess);
 
             //Get new list of details  
             this.detService.getDetailList()
@@ -65,13 +68,13 @@ export class HomeComponent {
                     Count: this.formData.value.Count,
                     DateCreate: this.formData.value.DateCreate,
                 };
-                this.detService.postData(Obj).subscribe((data: Response) => (alert(data.json())));
+                this.detService.postData(Obj).subscribe();
+                alert("Деталь успешно добавлена")
                 this.formData.reset();
                 this.detService.getDetailList()
                     .subscribe(
                     (data: Response) => (this.DetailList = data.json())
-                );
-                this.formData.reset();
+                    );
             }
         }
 }

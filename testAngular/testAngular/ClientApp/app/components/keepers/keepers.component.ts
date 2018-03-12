@@ -10,6 +10,7 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 export class keepersComponent {
     public KeepersList = [];
     public formData: FormGroup;
+    public mess = "";
     public constructor(private detService: DetailServcies) {
         this.detService.getKeeperCountList()
             .subscribe(
@@ -24,7 +25,8 @@ export class keepersComponent {
         var status = confirm("Вы точно хотите удалить запись из БД?");
         if (status == true) {
             this.detService.removeKeeper(detId)
-                .subscribe((data: Response) => (alert(data.json())));
+                .subscribe((data: Response) => (this.mess=data.json()));
+            alert(this.mess);
             //Get new list of keepers  
             this.detService.getKeeperCountList()
                 .subscribe(

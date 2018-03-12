@@ -57,7 +57,7 @@ namespace testAngular.Controllers
         {
             _context.Details.Add(detObj);
             _context.SaveChanges();
-            return Json("Запись добавлена!");
+            return Json("OK");
         }
         [HttpDelete]
         public IActionResult RemoveDetailOnDB([FromBody]int detId)
@@ -65,11 +65,11 @@ namespace testAngular.Controllers
             Detail Det=_context.Details.Find(detId);
             if(Det==null)
             {
-                return Json("Запись была удалена ранее! Обновите страницу");
+                return Json("Запись не найдена");
             }
             _context.Details.Remove(Det);
             _context.SaveChanges();
-            return Json("Запись успешно удалена!");
+            return Json("Запись Удалена");
         }
         [HttpPut]
         public IActionResult RemoveDetail([FromBody]int uptId)

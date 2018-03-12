@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b74650d76b7fb4df7fa4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "72d9a11842f983300d7b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1752,6 +1752,7 @@ var HomeComponent = (function () {
         this.detService = detService;
         this.DetailList = [];
         this.KeeperList = [];
+        this.mess = "";
         this.detService.getDetailList()
             .subscribe(function (data) { return (_this.DetailList = data.json()); });
         this.detService.getKeeperList()
@@ -1769,7 +1770,8 @@ var HomeComponent = (function () {
         var status = confirm("Вы точно хотите удалить запись из БД?");
         if (status == true) {
             this.detService.removeDetailOnDB(detId)
-                .subscribe(function (data) { return (alert(data.json())); });
+                .subscribe(function (data) { return (_this.mess = data.json()); });
+            alert(this.mess);
             //Get new list of details  
             this.detService.getDetailList()
                 .subscribe(function (data) { return (_this.DetailList = data.json()); });
@@ -1780,7 +1782,8 @@ var HomeComponent = (function () {
         var status = confirm("Вы точно переместить деталь в удаленные?");
         if (status == true) {
             this.detService.removeDetail(detId)
-                .subscribe(function (data) { return (alert(data.json())); });
+                .subscribe(function (data) { return (_this.mess = data.json()); });
+            alert(this.mess);
             //Get new list of details  
             this.detService.getDetailList()
                 .subscribe(function (data) { return (_this.DetailList = data.json()); });
@@ -1796,11 +1799,11 @@ var HomeComponent = (function () {
                 Count: this.formData.value.Count,
                 DateCreate: this.formData.value.DateCreate,
             };
-            this.detService.postData(Obj).subscribe(function (data) { return (alert(data.json())); });
+            this.detService.postData(Obj).subscribe();
+            alert("Деталь успешно добавлена");
             this.formData.reset();
             this.detService.getDetailList()
                 .subscribe(function (data) { return (_this.DetailList = data.json()); });
-            this.formData.reset();
         }
     };
     HomeComponent = __decorate([
@@ -1841,6 +1844,7 @@ var keepersComponent = (function () {
         var _this = this;
         this.detService = detService;
         this.KeepersList = [];
+        this.mess = "";
         this.detService.getKeeperCountList()
             .subscribe(function (data) { return (_this.KeepersList = data.json()); });
         this.formData = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormGroup"]({
@@ -1852,7 +1856,8 @@ var keepersComponent = (function () {
         var status = confirm("Вы точно хотите удалить запись из БД?");
         if (status == true) {
             this.detService.removeKeeper(detId)
-                .subscribe(function (data) { return (alert(data.json())); });
+                .subscribe(function (data) { return (_this.mess = data.json()); });
+            alert(this.mess);
             //Get new list of keepers  
             this.detService.getKeeperCountList()
                 .subscribe(function (data) { return (_this.KeepersList = data.json()); });
